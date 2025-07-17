@@ -1,53 +1,73 @@
 body {
-  font-family: Arial, sans-serif;
-  max-width: 1200px;
-  margin: 20px auto;
-  background: #f7f9fc;
-  color: #333;
+    font-family: Arial, sans-serif;
+    background: #fff5f5;
+    margin: 0;
+    padding: 20px;
+    color: #941c1c;
 }
+
 h1 {
-  text-align: center;
-  margin-bottom: 25px;
+    text-align: center;
+    background-color: #ed3939;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
 }
-.table-container {
-  overflow-x: auto;
+
+#resetBtn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #ed3939;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
-table {
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
+
+#malla {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 900px;
+    margin: auto;
 }
-th, td {
-  border: 1px solid #ddd;
-  padding: 10px 8px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  max-width: 110px;
-  white-space: pre-line;
-  overflow-wrap: break-word;
+
+.semestre {
+    background: #fcb6b7;
+    padding: 15px;
+    border-radius: 10px;
 }
-th {
-  background-color: #007bff;
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+
+.semestre h2 {
+    margin-top: 0;
+    color: #941c1c;
 }
-td.aprobado {
-  background-color: #d4edda;
-  border-color: #28a745;
-  color: #155724;
+
+.materia {
+    background-color: #fff5f5;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 2px solid #b09d9d;
+    transition: background-color 0.3s, border-color 0.3s;
+    cursor: pointer;
 }
-td.reprobado {
-  background-color: #f8d7da;
-  border-color: #dc3545;
-  color: #721c24;
+
+.materia.habilitada {
+    background-color: #ffebeb;
+    color: #b52121;
+    border-color: #ffb5b5;
 }
-td.bloqueado {
-  background-color: #eee;
-  border-color: #ccc;
-  color: #999;
-  cursor: not-allowed;
+
+.materia.completada {
+    background-color: #F3E8FF;
+    color: #cf2323;
+    border-color: #fc8383;
+}
+
+@media (max-width: 600px) {
+    .materia {
+        font-size: 14px;
+    }
 }
