@@ -1,74 +1,59 @@
-
+/* Estilos base para la malla de Obstetricia UTA */
 body {
-    font-family: Arial, sans-serif;
-    background: #fff5f5;
-    margin: 0;
-    padding: 20px;
-    color: #941c1c;
+  font-family: sans-serif;
+  background: #fff5f5;
+  padding: 2rem;
+  margin: 0;
 }
 
 h1 {
-    text-align: center;
-    background-color: #ed3939;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
+  color: #c62828;
+  margin-bottom: 1rem;
 }
 
-#resetBtn {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #ed3939;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+h2 {
+  margin-top: 2rem;
+  color: #b71c1c;
+  border-bottom: 2px solid #f5c6cb;
+  padding-bottom: 0.3rem;
 }
 
-#malla {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 900px;
-    margin: auto;
+.semester {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.semestre {
-    background: #fcb6b7;
-    padding: 15px;
-    border-radius: 10px;
+.course {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  padding: 10px;
+  width: 220px;
+  min-height: 60px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, text-decoration 0.3s, transform 0.2s;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.semestre h2 {
-    margin-top: 0;
-    color: #941c1c;
+.course:hover {
+  transform: scale(1.02);
 }
 
-.materia {
-    background-color: #fff5f5;
-    padding: 10px 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 2px solid #b09d9d;
-    transition: background-color 0.3s, border-color 0.3s;
-    cursor: pointer;
+.course.approved {
+  background-color: #e57373;
+  text-decoration: line-through;
+  color: white;
 }
 
-.materia.habilitada {
-    background-color: #ffebeb;
-    color: #b52121;
-    border-color: #ffb5b5;
+.course.locked {
+  background-color: #d6d6d6;
+  color: #888;
+  cursor: not-allowed;
+  border: 1px dashed #aaa;
 }
 
-.materia.completada {
-    background-color: #F3E8FF;
-    color: #cf2323;
-    border-color: #fc8383;
-}
-
-@media (max-width: 600px) {
-    .materia {
-        font-size: 14px;
     }
 }
