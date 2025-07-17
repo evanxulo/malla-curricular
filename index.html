@@ -1,176 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malla Obstetricia UTA</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #fff5f5;
-      padding: 2rem;
-    }
-    h2 {
-      margin-top: 2rem;
-      color: #b71c1c;
-    }
-    .semester {
-      margin-bottom: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .course {
-      background-color: #f8d7da;
-      border: 1px solid #f5c6cb;
-      border-radius: 8px;
-      padding: 10px;
-      width: 220px;
-      text-align: center;
-      cursor: pointer;
-      transition: background-color 0.3s, text-decoration 0.3s;
-    }
-    .course.approved {
-      background-color: #e57373;
-      text-decoration: line-through;
-      color: white;
-    }
-    .course.locked {
-      background-color: #d6d6d6;
-      color: #888;
-      cursor: not-allowed;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Malla Obstetricia UTA - Formato Horario</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Malla Obstetricia y Puericultura - UTA</h1>
-  <div id="malla"></div>
+  <h1>Malla Curricular Obstetricia y Puericultura - UTA (Formato Horario)</h1>
+  <div class="table-container">
+    <table id="mallaHorario">
+      <thead>
+        <tr>
+          <th>Año 1 - Semestre 1</th>
+          <th>Año 1 - Semestre 2</th>
+          <th>Año 2 - Semestre 1</th>
+          <th>Año 2 - Semestre 2</th>
+          <th>Año 3 - Semestre 1</th>
+          <th>Año 3 - Semestre 2</th>
+          <th>Año 4 - Semestre 1</th>
+          <th>Año 4 - Semestre 2</th>
+          <th>Año 5 - Semestre 1</th>
+          <th>Año 5 - Semestre 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Filas generadas por JS -->
+      </tbody>
+    </table>
+  </div>
 
-  <script>
-    const courses = [
-      { semestre: "Año 1 - Semestre 1", items: [
-        { nombre: "Anatomia General" },
-        { nombre: "Biología Humana" },
-        { nombre: "Química General y Orgánica" },
-        { nombre: "Introducción a la Matronería y Gestión en Salud" },
-        { nombre: "Ingles I" },
-        { nombre: "Expresión Oral y Escrita" },
-      ]},
-      { semestre: "Año 1 - Semestre 2", items: [
-        { nombre: "Anatomía Gineco-Obstetrica", reqs: ["Anatomia General"] },
-        { nombre: "Cuidados Básicos de Matronería", reqs: ["Anatomia General"] },
-        { nombre: "Embriología Humana", reqs: ["Anatomia General", "Biología Humana"] },
-        { nombre: "Microbiología y Parasitología", reqs: ["Biología Humana"] },
-        { nombre: "Fisiología Humana", reqs: ["Anatomia General", "Biología Humana"] },
-        { nombre: "Bioquimica", reqs: ["Química General y Orgánica"] },
-      ]},
-      { semestre: "Año 2 - Semestre 1", items: [
-        { nombre: "Farmacología", reqs: ["Química General y Orgánica", "Fisiología Humana"] },
-        { nombre: "Matonería Medico Quirúrgica", reqs: ["Anatomía Gineco-Obstetrica", "Cuidados Básicos de Matronería", "Microbiología y Parasitología"] },
-        { nombre: "Obstetricia Fisiología I", reqs: ["Anatomía Gineco-Obstetrica", "Embriología Humana", "Fisiología Humana"] },
-        { nombre: "Neonatología Fisiológica", reqs: ["Cuidados Básicos de Matronería", "Embriología Humana", "Fisiología Humana"] },
-        { nombre: "Fisiopatología", reqs: ["Embriología Humana"] },
-        { nombre: "Ingles II", reqs: ["Ingles I"] },
-      ]},
-      { semestre: "Año 2 - Semestre 2", items: [
-        { nombre: "Clínica Obstétrica y Neonatal I", reqs: ["Farmacología", "Matonería Medico Quirúrgica", "Obstetricia Fisiología I", "Fisiopatología"] },
-        { nombre: "Morbilidad Obstétrica", reqs: ["Farmacología", "Obstetricia Fisiología I", "Fisiopatología"] },
-        { nombre: "Obstetricia Fisiológica II", reqs: ["Obstetricia Fisiología I", "Fisiopatología"] },
-        { nombre: "Neonatología Patológica", reqs: ["Neonatología Fisiológica", "Farmacología"] },
-        { nombre: "Psicología Evolutiva" },
-      ]},
-      { semestre: "Año 3 - Semestre 1", items: [
-        { nombre: "Clínica Obstétrica y Neonatal II", reqs: ["Clínica Obstétrica y Neonatal I", "Morbilidad Obstétrica", "Obstetricia Fisiológica II"] },
-        { nombre: "Metodología de la Investigación", reqs: ["Ingles I"] },
-        { nombre: "Evaluación Unidad Feto Placentaria", reqs: ["Morbilidad Obstétrica", "Obstetricia Fisiológica II"] },
-        { nombre: "Ginecología", reqs: ["Farmacología", "Fisiopatología"] },
-        { nombre: "Cosmovisión Andina en la Salud de la Mujer", reqs: ["Psicología Evolutiva"] },
-      ]},
-      { semestre: "Año 3 - Semestre 2", items: [
-        { nombre: "Salud Pública y Epidemiología", reqs: ["Psicología Evolutiva"] },
-        { nombre: "Planificación Familiar", reqs: ["Ginecología"] },
-        { nombre: "Sexualidad", reqs: ["Ginecología"] },
-      ]},
-      { semestre: "Año 4 - Semestre 1", items: [
-        { nombre: "Clínica Gineco-Obstétrica y Neonatal", reqs: ["Clínica Obstétrica y Neonatal II", "Evaluación Unidad Feto Placentaria", "Ginecología", "Planificación Familiar"] },
-        { nombre: "Salud Familiar", reqs: ["Salud Pública y Epidemiología"] },
-        { nombre: "Gestión del Programa de Salud Sexual y Salud Reproductiva", reqs: ["Planificación Familiar"] },
-        { nombre: "Gestión y Políticas en Salud", reqs: ["Salud Pública y Epidemiología"] },
-        { nombre: "EFG" },
-      ]},
-      { semestre: "Año 4 - Semestre 2", items: [
-        { nombre: "Gestión y Liderazgo en Matronería", reqs: ["Salud Familiar", "Gestión del Programa de Salud Sexual y Salud Reproductiva"] },
-        { nombre: "Seminario de Grado", reqs: ["Salud Pública y Epidemiología", "Metodología de la Investigación"] },
-        { nombre: "Bioética y Legislación en Matronería", reqs: ["Clínica Obstétrica y Neonatal II"] },
-      ]},
-      { semestre: "Año 5 - Semestre 1", items: [
-        { nombre: "Gestión en Matronería Aplicada", reqs: ["Gestión y Liderazgo en Matronería"] },
-        { nombre: "Simulación Clínica Integrada", reqs: ["Clínica Gineco-Obstétrica y Neonatal"] },
-        { nombre: "EFP", reqs: ["Bioética y Legislación en Matronería"] },
-      ]},
-      { semestre: "Año 5 - Semestre 2", items: [
-        { nombre: "Internado", reqs: [
-          "Anatomia General", "Biología Humana", "Química General y Orgánica", "Introducción a la Matronería y Gestión en Salud", "Ingles I", "Expresión Oral y Escrita",
-          "Anatomía Gineco-Obstetrica", "Cuidados Básicos de Matronería", "Embriología Humana", "Microbiología y Parasitología", "Fisiología Humana", "Bioquimica",
-          "Farmacología", "Matonería Medico Quirúrgica", "Obstetricia Fisiología I", "Neonatología Fisiológica", "Fisiopatología", "Ingles II",
-          "Clínica Obstétrica y Neonatal I", "Morbilidad Obstétrica", "Obstetricia Fisiológica II", "Neonatología Patológica", "Psicología Evolutiva",
-          "Clínica Obstétrica y Neonatal II", "Metodología de la Investigación", "Evaluación Unidad Feto Placentaria", "Ginecología", "Cosmovisión Andina en la Salud de la Mujer",
-          "Salud Pública y Epidemiología", "Planificación Familiar", "Sexualidad", "Clínica Gineco-Obstétrica y Neonatal", "Salud Familiar",
-          "Gestión del Programa de Salud Sexual y Salud Reproductiva", "Gestión y Políticas en Salud", "EFG", "Gestión y Liderazgo en Matronería",
-          "Seminario de Grado", "Bioética y Legislación en Matronería", "Gestión en Matronería Aplicada", "Simulación Clínica Integrada", "EFP"
-        ]}
-      ]},
-    ];
-
-    const aprobados = new Set();
-
-    const mallaDiv = document.getElementById("malla");
-
-    function renderMalla() {
-      mallaDiv.innerHTML = "";
-
-      for (const bloque of courses) {
-        const semTitle = document.createElement("h2");
-        semTitle.textContent = bloque.semestre;
-        mallaDiv.appendChild(semTitle);
-
-        const semDiv = document.createElement("div");
-        semDiv.className = "semester";
-
-        for (const ramo of bloque.items) {
-          const div = document.createElement("div");
-          div.className = "course";
-          div.textContent = ramo.nombre;
-
-          const requisitos = ramo.reqs || [];
-          const bloqueado = requisitos.length > 0 && requisitos.some(r => !aprobados.has(r));
-
-          if (aprobados.has(ramo.nombre)) {
-            div.classList.add("approved");
-          } else if (bloqueado) {
-            div.classList.add("locked");
-          }
-
-          div.addEventListener("click", () => {
-            if (div.classList.contains("locked")) return;
-
-            if (aprobados.has(ramo.nombre)) {
-              aprobados.delete(ramo.nombre);
-            } else {
-              aprobados.add(ramo.nombre);
-            }
-
-            renderMalla();
-          });
-
-          semDiv.appendChild(div);
-        }
-
-        mallaDiv.appendChild(semDiv);
-      }
-    }
-
-    renderMalla();
-  </script>
+<script src="script.js"></script>
 </body>
 </html>
