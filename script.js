@@ -1,115 +1,135 @@
+// Datos de la malla curricular: arreglo de semestres, cada semestre un array de ramos con codigo, nombre y prerrequisitos
 
-const materias = [
-    { id: "anat_general", nombre: "Anatomía General", requisitos: [] },
-    { id: "bio_humana", nombre: "Biología Humana", requisitos: [] },
-    { id: "quimica", nombre: "Química General y Orgánica", requisitos: [] },
-    { id: "intro_matroneria", nombre: "Introducción a la Matronería y Gestión en Salud", requisitos: [] },
-    { id: "ingles1", nombre: "Inglés I", requisitos: [] },
-    { id: "expresion", nombre: "Expresión Oral y Escrita", requisitos: [] },
-    { id: "anat_gin", nombre: "Anatomía Gineco-Obstetrica", requisitos: ["anat_general"] },
-    { id: "cuidados_basicos", nombre: "Cuidados Básicos de Matronería", requisitos: ["anat_general"] },
-    { id: "embrio", nombre: "Embriología Humana", requisitos: ["anat_general", "bio_humana"] },
-    { id: "micro", nombre: "Microbiología y Parasitología", requisitos: ["bio_humana"] },
-    { id: "fisiologia", nombre: "Fisiología Humana", requisitos: ["anat_general", "bio_humana"] },
-    { id: "bioquimica", nombre: "Bioquímica", requisitos: ["quimica"] },
-    { id: "farmacologia", nombre: "Farmacología", requisitos: ["quimica", "fisiologia"] },
-    { id: "mat_med_quir", nombre: "Matronería Médico Quirúrgica", requisitos: ["anat_gin", "cuidados_basicos", "micro"] },
-    { id: "obs_fisio1", nombre: "Obstetricia Fisiología I", requisitos: ["anat_gin", "embrio", "fisiologia"] },
-    { id: "neonato_fisio", nombre: "Neonatología Fisiológica", requisitos: ["cuidados_basicos", "embrio", "fisiologia"] },
-    { id: "fisiopato", nombre: "Fisiopatología", requisitos: ["embrio"] },
-    { id: "ingles2", nombre: "Inglés II", requisitos: ["ingles1"] },
-    { id: "clinica1", nombre: "Clínica Obstétrica y Neonatal I", requisitos: ["farmacologia", "mat_med_quir", "obs_fisio1", "fisiopato"] },
-    { id: "morbilidad", nombre: "Morbilidad Obstétrica", requisitos: ["farmacologia", "obs_fisio1", "fisiopato"] },
-    { id: "obs_fisio2", nombre: "Obstetricia Fisiológica II", requisitos: ["obs_fisio1", "fisiopato"] },
-    { id: "neonato_pat", nombre: "Neonatología Patológica", requisitos: ["neonato_fisio", "farmacologia"] },
-    { id: "psico_evo", nombre: "Psicología Evolutiva", requisitos: [] },
-    { id: "clinica2", nombre: "Clínica Obstétrica y Neonatal II", requisitos: ["clinica1", "morbilidad", "obs_fisio2"] },
-    { id: "investigacion", nombre: "Metodología de la Investigación", requisitos: ["ingles1"] },
-    { id: "evaluacion_ufp", nombre: "Evaluación Unidad Feto Placentaria", requisitos: ["morbilidad", "obs_fisio2"] },
-    { id: "gineco", nombre: "Ginecología", requisitos: ["farmacologia", "fisiopato"] },
-    { id: "cosmovision", nombre: "Cosmovisión Andina en la Salud de la Mujer", requisitos: ["psico_evo"] },
-    { id: "salud_publica", nombre: "Salud Pública y Epidemiología", requisitos: ["psico_evo"] },
-    { id: "planificacion", nombre: "Planificación Familiar", requisitos: ["gineco"] },
-    { id: "sexualidad", nombre: "Sexualidad", requisitos: ["gineco"] },
-    { id: "clinica_gine", nombre: "Clínica Gineco-Obstétrica y Neonatal", requisitos: ["clinica2", "evaluacion_ufp", "gineco", "planificacion"] },
-    { id: "salud_familiar", nombre: "Salud Familiar", requisitos: ["salud_publica"] },
-    { id: "gestion_programa", nombre: "Gestión del Programa de Salud Sexual y Salud Reproductiva", requisitos: ["planificacion"] },
-    { id: "gestion_politicas", nombre: "Gestión y Políticas en Salud", requisitos: ["salud_publica"] },
-    { id: "efg", nombre: "EFG", requisitos: [] },
-    { id: "liderazgo", nombre: "Gestión y Liderazgo en Matronería", requisitos: ["salud_familiar", "gestion_programa"] },
-    { id: "seminario", nombre: "Seminario de Grado", requisitos: ["salud_publica", "investigacion"] },
-    { id: "bioetica", nombre: "Bioética y Legislación en Matronería", requisitos: ["clinica2"] },
-    { id: "gestion_aplicada", nombre: "Gestión en Matronería Aplicada", requisitos: ["liderazgo"] },
-    { id: "simulacion", nombre: "Simulación Clínica Integrada", requisitos: ["clinica_gine"] },
-    { id: "efp", nombre: "EFP", requisitos: ["bioetica"] },
-    { id: "internado", nombre: "Internado", requisitos: [
-        "anat_general","bio_humana","quimica","intro_matroneria","ingles1","expresion",
-        "anat_gin","cuidados_basicos","embrio","micro","fisiologia","bioquimica",
-        "farmacologia","mat_med_quir","obs_fisio1","neonato_fisio","fisiopato","ingles2",
-        "clinica1","morbilidad","obs_fisio2","neonato_pat","psico_evo","clinica2",
-        "investigacion","evaluacion_ufp","gineco","cosmovision","salud_publica","planificacion",
-        "sexualidad","clinica_gine","salud_familiar","gestion_programa","gestion_politicas",
-        "efg","liderazgo","seminario","bioetica","gestion_aplicada","simulacion","efp"
-    ]}
+const malla = [
+  // Año 1 - Semestre 1
+  [
+    { codigo: "A1S1_01", nombre: "Anatomía General", prerequisitos: [] },
+    { codigo: "A1S1_02", nombre: "Biología Humana", prerequisitos: [] },
+    { codigo: "A1S1_03", nombre: "Química General y Orgánica", prerequisitos: [] },
+    { codigo: "A1S1_04", nombre: "Introducción a la Matronería y Gestión en Salud", prerequisitos: [] },
+    { codigo: "A1S1_05", nombre: "Inglés I", prerequisitos: [] },
+    { codigo: "A1S1_06", nombre: "Expresión Oral y Escrita", prerequisitos: [] }
+  ],
+  // Año 1 - Semestre 2
+  [
+    { codigo: "A1S2_01", nombre: "Anatomía Gineco-Obstétrica", prerequisitos: ["A1S1_01"] },
+    { codigo: "A1S2_02", nombre: "Cuidados Básicos de Matronería", prerequisitos: ["A1S1_01"] },
+    { codigo: "A1S2_03", nombre: "Embriología Humana", prerequisitos: ["A1S1_01", "A1S1_02"] },
+    { codigo: "A1S2_04", nombre: "Microbiología y Parasitología", prerequisitos: ["A1S1_02"] },
+    { codigo: "A1S2_05", nombre: "Fisiología Humana", prerequisitos: ["A1S1_01", "A1S1_02"] },
+    { codigo: "A1S2_06", nombre: "Bioquímica", prerequisitos: ["A1S1_03"] }
+  ],
+  // Año 2 - Semestre 1
+  [
+    { codigo: "A2S1_01", nombre: "Farmacología", prerequisitos: ["A1S1_03", "A1S2_05"] },
+    { codigo: "A2S1_02", nombre: "Matronería Médico Quirúrgica", prerequisitos: ["A1S2_01", "A1S2_02", "A1S2_04"] },
+    { codigo: "A2S1_03", nombre: "Obstetricia Fisiología I", prerequisitos: ["A1S2_01", "A1S2_03", "A1S2_05"] },
+    { codigo: "A2S1_04", nombre: "Neonatología Fisiológica", prerequisitos: ["A1S2_02", "A1S2_03", "A1S2_05"] },
+    { codigo: "A2S1_05", nombre: "Fisiopatología", prerequisitos: ["A1S2_03"] },
+    { codigo: "A2S1_06", nombre: "Inglés II", prerequisitos: ["A1S1_05"] }
+  ],
+  // Año 2 - Semestre 2
+  [
+    { codigo: "A2S2_01", nombre: "Clínica Obstétrica y Neonatal I", prerequisitos: ["A2S1_01", "A2S1_02", "A2S1_03", "A2S1_05"] },
+    { codigo: "A2S2_02", nombre: "Morbilidad Obstétrica", prerequisitos: ["A2S1_01", "A2S1_03", "A2S1_05"] },
+    { codigo: "A2S2_03", nombre: "Obstetricia Fisiológica II", prerequisitos: ["A2S1_03", "A2S1_05"] },
+    { codigo: "A2S2_04", nombre: "Neonatología Patológica", prerequisitos: ["A2S1_04", "A2S1_01"] },
+    { codigo: "A2S2_05", nombre: "Psicología Evolutiva", prerequisitos: [] }
+  ],
+  // Año 3 - Semestre 1
+  [
+    { codigo: "A3S1_01", nombre: "Clínica Obstétrica y Neonatal II", prerequisitos: ["A2S2_01", "A2S2_02", "A2S2_03"] },
+    { codigo: "A3S1_02", nombre: "Metodología de la Investigación", prerequisitos: ["A1S1_05"] },
+    { codigo: "A3S1_03", nombre: "Evaluación Unidad Feto Placentaria", prerequisitos: ["A2S2_02", "A2S2_03"] },
+    { codigo: "A3S1_04", nombre: "Ginecología", prerequisitos: ["A2S1_01", "A2S1_05"] },
+    { codigo: "A3S1_05", nombre: "Cosmovisión Andina en la Salud de la Mujer", prerequisitos: ["A2S2_05"] }
+  ],
+  // Año 3 - Semestre 2
+  [
+    { codigo: "A3S2_01", nombre: "Clínica Obstétrica y Neonatal II", prerequisitos: ["A2S2_01", "A2S2_02", "A2S2_03"] },
+    { codigo: "A3S2_02", nombre: "Salud Pública y Epidemiología", prerequisitos: ["A2S2_05"] },
+    { codigo: "A3S2_03", nombre: "Planificación Familiar", prerequisitos: ["A3S1_04"] },
+    { codigo: "A3S2_04", nombre: "Sexualidad", prerequisitos: ["A3S1_04"] }
+  ],
+  // Año 4 - Semestre 1
+  [
+    { codigo: "A4S1_01", nombre: "Clínica Gineco-Obstétrica y Neonatal", prerequisitos: ["A3S2_01", "A3S1_03", "A3S1_04", "A3S2_03"] },
+    { codigo: "A4S1_02", nombre: "Salud Familiar", prerequisitos: ["A3S2_02"] },
+    { codigo: "A4S1_03", nombre: "Gestión del Programa de Salud Sexual y Salud Reproductiva", prerequisitos: ["A3S2_03"] },
+    { codigo: "A4S1_04", nombre: "Gestión y Políticas en Salud", prerequisitos: ["A3S2_02"] },
+    { codigo: "A4S1_05", nombre: "EFG", prerequisitos: [] }
+  ],
+  // Año 4 - Semestre 2
+  [
+    { codigo: "A4S2_01", nombre: "Clínica Gineco-Obstétrica y Neonatal", prerequisitos: ["A3S2_01", "A3S1_03", "A3S1_04", "A3S2_03"] },
+    { codigo: "A4S2_02", nombre: "Gestión y Liderazgo en Matronería", prerequisitos: ["A4S1_02", "A4S1_03"] },
+    { codigo: "A4S2_03", nombre: "Seminario de Grado", prerequisitos: ["A3S2_02", "A3S1_02"] },
+    { codigo: "A4S2_04", nombre: "Bioética y Legislación en Matronería", prerequisitos: ["A3S2_01"] }
+  ],
+  // Año 5 - Semestre 1
+  [
+    { codigo: "A5S1_01", nombre: "Gestión en Matronería Aplicada", prerequisitos: ["A4S2_02"] },
+    { codigo: "A5S1_02", nombre: "Simulación Clínica Integrada", prerequisitos: ["A4S2_01"] },
+    { codigo: "A5S1_03", nombre: "EFP", prerequisitos: ["A4S2_04"] }
+  ],
+  // Año 5 - Semestre 2
+  [
+    { codigo: "A5S2_01", nombre: "Internado", prerequisitos: ["A1S1_01", "A1S1_02", "A1S1_03", "A1S1_04"] }
+  ]
 ];
 
-    { id: "anat_general", nombre: "Anatomia General", requisitos: [] },
-    { id: "bio_humana", nombre: "Biología Humana", requisitos: [] },
-    { id: "quimica", nombre: "Química General y Orgánica", requisitos: [] },
-    { id: "intro_matroneria", nombre: "Introducción a la Matronería y Gestión en Salud", requisitos: [] },
-    { id: "ingles1", nombre: "Inglés I", requisitos: [] },
-    { id: "expresion", nombre: "Expresión Oral y Escrita", requisitos: [] },
-    { id: "anat_gin", nombre: "Anatomía Gineco-Obstetrica", requisitos: ["anat_general"] },
-    { id: "cuidados_basicos", nombre: "Cuidados Básicos de Matronería", requisitos: ["anat_general"] },
-    { id: "embrio", nombre: "Embriología Humana", requisitos: ["anat_general", "bio_humana"] },
-    { id: "micro", nombre: "Microbiología y Parasitología", requisitos: ["bio_humana"] },
-    { id: "fisiologia", nombre: "Fisiología Humana", requisitos: ["anat_general", "bio_humana"] },
-    { id: "bioquimica", nombre: "Bioquímica", requisitos: ["quimica"] }
-];
+// Obtener máximo número de ramos para filas iguales
+const maxFilas = Math.max(...malla.map(s => s.length));
 
-const estado = JSON.parse(localStorage.getItem('estadoMaterias') || '{}');
+// Estado guardado en localStorage
+const estadoRamos = JSON.parse(localStorage.getItem('estadoRamos') || '{}');
 
-function guardarEstado() {
-    localStorage.setItem('estadoMaterias', JSON.stringify(estado));
+const tablaBody = document.querySelector('#mallaHorario tbody');
+
+function puedeActivar(ramo) {
+  if (!ramo.prerequisitos || ramo.prerequisitos.length === 0) return true;
+  return ramo.prerequisitos.every(cod => estadoRamos[cod] === 'aprobado');
 }
 
-function crearMalla() {
-    const contenedor = document.getElementById('malla');
-    contenedor.innerHTML = '';
-    materias.forEach(m => {
-        const div = document.createElement('div');
-        div.className = 'materia';
-        div.textContent = m.nombre;
-        div.id = m.id;
-        div.addEventListener('click', () => toggleMateria(m.id));
-        contenedor.appendChild(div);
-    });
-    actualizarMalla();
+function crearCelda(ramo) {
+  const td = document.createElement('td');
+  if (!ramo) {
+    td.textContent = '';
+    td.classList.add('vacío');
+    return td;
+  }
+  td.textContent = `${ramo.codigo}\n${ramo.nombre}`;
+  td.title = `Prerrequisitos: ${ramo.prerequisitos.length > 0 ? ramo.prerequisitos.join(', ') : 'Ninguno'}`;
+  if (!puedeActivar(ramo)) {
+    td.classList.add('bloqueado');
+  } else {
+    const estado = estadoRamos[ramo.codigo];
+    if (estado === 'aprobado') td.classList.add('aprobado');
+    else if (estado === 'reprobado') td.classList.add('reprobado');
+  }
+  td.addEventListener('click', () => {
+    if (td.classList.contains('bloqueado')) return;
+    const codigo = ramo.codigo;
+    const estadoActual = estadoRamos[codigo];
+    if (estadoActual === 'aprobado') estadoRamos[codigo] = 'reprobado';
+    else if (estadoActual === 'reprobado') delete estadoRamos[codigo];
+    else estadoRamos[codigo] = 'aprobado';
+    localStorage.setItem('estadoRamos', JSON.stringify(estadoRamos));
+    actualizarTabla();
+  });
+  return td;
 }
 
-function toggleMateria(id) {
-    estado[id] = !estado[id];
-    guardarEstado();
-    actualizarMalla();
+function actualizarTabla() {
+  tablaBody.innerHTML = '';
+  for (let i = 0; i < maxFilas; i++) {
+    const tr = document.createElement('tr');
+    for (let s = 0; s < malla.length; s++) {
+      const ramo = malla[s][i];
+      tr.appendChild(crearCelda(ramo));
+    }
+    tablaBody.appendChild(tr);
+  }
 }
 
-function actualizarMalla() {
-    materias.forEach(m => {
-        const div = document.getElementById(m.id);
-        const aprobadas = m.requisitos.every(req => estado[req]);
-        if (estado[m.id]) {
-            div.className = 'materia completada';
-        } else if (aprobadas) {
-            div.className = 'materia habilitada';
-        } else {
-            div.className = 'materia';
-        }
-    });
-}
-
-document.getElementById('resetBtn').addEventListener('click', () => {
-    localStorage.removeItem('estadoMaterias');
-    location.reload();
-});
-
-crearMalla();
+actualizarTabla();
